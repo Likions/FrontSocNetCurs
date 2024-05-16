@@ -56,7 +56,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          Самая лучшая соцсеть
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween

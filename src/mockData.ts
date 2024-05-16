@@ -27,16 +27,6 @@ interface Comment {
     content: string,
 }
 
-export default async function fetchUsers(ids: number[]) {
-    const promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve(users.filter(user => ids.includes(user.id))), 100)
-    });
-
-    const result = await promise; // будет ждать, пока промис не выполнится (*)
-
-    return result;
-}
-
 
 const users: User[] = [
     {
