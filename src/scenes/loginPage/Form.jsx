@@ -90,7 +90,6 @@ const Form = () => {
       dispatch(
         setLogin({
           user: loggedIn.user,
-          token: loggedIn.token,
         })
       );
       navigate("/home");
