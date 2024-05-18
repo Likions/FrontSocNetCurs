@@ -84,13 +84,11 @@ const Form = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    const loggedIn = await loggedInResponse.json();
+    const user = await loggedInResponse.json();
     onSubmitProps.resetForm();
-    if (loggedIn) {
+    if (user) {
       dispatch(
-        setLogin({
-          user: loggedIn.user,
-        })
+        setLogin({user})
       );
       navigate("/home");
     }
