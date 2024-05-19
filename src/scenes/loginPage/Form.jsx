@@ -63,11 +63,9 @@ const Form = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch(
-      `http://localhost:5003/AuthLogin`,
-      {
+    const savedUserResponse = await fetch(`http://localhost:5003/AuthLogin?Email=${values.email}&Password=${values.password}`+
+        `&FirstName=${values.firstName}&LastName=${values.lastName}&Friends=${values.friends}&Location=${values.location}&Occupation=${values.occupation}`, {
         method: "POST",
-        body: formData,
       }
     );
     const savedUser = await savedUserResponse.json();
@@ -181,6 +179,7 @@ const Form = () => {
                     onDrop={(acceptedFiles) =>
                       setFieldValue("picture", acceptedFiles[0])
                     }
+                    disable={true}
                   >
                     {({ getRootProps, getInputProps }) => (
                       <Box
@@ -191,7 +190,7 @@ const Form = () => {
                       >
                         <input {...getInputProps()} />
                         {!values.picture ? (
-                          <p>Add Picture Here</p>
+                          <p>Прикрепление файлов будет добавлено в следующей версии</p>
                         ) : (
                           <FlexBetween>
                             <Typography>{values.picture.name}</Typography>
