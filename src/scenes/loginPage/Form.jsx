@@ -23,7 +23,6 @@ const registerSchema = yup.object().shape({
   password: yup.string().required("required"),
   location: yup.string().required("required"),
   occupation: yup.string().required("required"),
-  picture: yup.string().required("required"),
 });
 
 const loginSchema = yup.object().shape({
@@ -38,7 +37,6 @@ const initialValuesRegister = {
   password: "",
   location: "",
   occupation: "",
-  picture: "",
 };
 
 const initialValuesLogin = {
@@ -61,11 +59,15 @@ const Form = () => {
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    formData.append("picturePath", values.picture.name);
+    values.friends = [];
+    values.impressions = 0;
+    values.viewedProfile = 0;
 
-    const savedUserResponse = await fetch(`http://localhost:5003/AuthLogin?Email=${values.email}&Password=${values.password}`+
-        `&FirstName=${values.firstName}&LastName=${values.lastName}&Friends=${values.friends}&Location=${values.location}&Occupation=${values.occupation}&ViewedProfile=0&Impressions=0`, {
-        method: "POST",
+    const savedUserResponse = await fetch(`http://localhost:5003/AuthLogin`, 
+        {
+        method: "POST", 
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
       }
     );
     const savedUser = await savedUserResponse.json();
@@ -193,7 +195,6 @@ const Form = () => {
                           <p>Прикрепление файлов будет добавлено в следующей версии</p>
                         ) : (
                           <FlexBetween>
-                            <Typography>{values.picture.name}</Typography>
                             <EditOutlinedIcon />
                           </FlexBetween>
                         )}
