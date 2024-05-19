@@ -64,7 +64,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(`http://localhost:5003/AuthLogin?Email=${values.email}&Password=${values.password}`+
-        `&FirstName=${values.firstName}&LastName=${values.lastName}&Friends=${values.friends}&Location=${values.location}&Occupation=${values.occupation}`, {
+        `&FirstName=${values.firstName}&LastName=${values.lastName}&Friends=${values.friends}&Location=${values.location}&Occupation=${values.occupation}&ViewedProfile=0&Impressions=0`, {
         method: "POST",
       }
     );
