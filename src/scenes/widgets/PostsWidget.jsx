@@ -38,7 +38,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     <>
       {posts.map(
         ({
-          _id,
+          id,
           userId,
           firstName,
           lastName,
@@ -50,8 +50,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           comments,
         }) => (
           <PostWidget
-            key={_id}
-            postId={_id}
+            key={id}
+            postId={id}
             postUserId={userId}
             name={`${firstName} ${lastName}`}
             description={description}
