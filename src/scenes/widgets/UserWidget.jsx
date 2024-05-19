@@ -21,7 +21,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(`http://localhost:5003/User?UserId=${userId}`, {
       method: "GET",
     });
     const data = await response.json();

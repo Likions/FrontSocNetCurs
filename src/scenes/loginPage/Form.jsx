@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { Formik } from "formik";
+import {Formik, isEmptyArray} from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -64,7 +64,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      `http://localhost:5003/AuthLogin`,
       {
         method: "POST",
         body: formData,
@@ -79,12 +79,11 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+    const loggedInResponse = await fetch(`http://localhost:5003/AuthLogin?Email=${values.email}&Password=${values.password}`, {
+      method: "GET",
     });
-    const user = await loggedInResponse.json();
+    let user = await loggedInResponse.json();
+    user = user?.users[0];
     onSubmitProps.resetForm();
     if (user) {
       dispatch(

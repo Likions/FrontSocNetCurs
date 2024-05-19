@@ -22,7 +22,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/${friendId}`,
+      `http://localhost:5003/User?UserId=${friendId}`,
     );
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
