@@ -179,7 +179,7 @@ const Form = () => {
                     onDrop={(acceptedFiles) =>
                       setFieldValue("picture", acceptedFiles[0])
                     }
-                    disable={true}
+                    disabled={true}
                   >
                     {({ getRootProps, getInputProps }) => (
                       <Box
