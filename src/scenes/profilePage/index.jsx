@@ -18,8 +18,9 @@ const ProfilePage = () => {
     const response = await fetch(`http://localhost:5003/User?UserId=${userId}`, {
       method: "GET",
     });
-    const data = await response.json();
-    setUser(data);
+    let user = await response.json();
+    user = user?.users[0];
+    setUser({user});
   };
 
   useEffect(() => {

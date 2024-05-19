@@ -11,8 +11,7 @@ const FriendListWidget = ({ userId }) => {
   const friends = useSelector((state) => state.user.friends);
 
   const getFriends = async () => {
-    const response = await fetch(
-      `http://localhost:3001/users/${userId}/friends`,
+      const response = await fetch(`http://localhost:5003/User?UserId=${userId}`,
       {
         method: "GET",
       }
